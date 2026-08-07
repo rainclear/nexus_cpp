@@ -1,0 +1,12 @@
+# CMake build artifacts
+build/
+.cache/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS generated files
+.DS_Store
