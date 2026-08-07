@@ -12,6 +12,7 @@ FetchContent_MakeAvailable(Catch2)
 # Define unit test executable target
 add_executable(unit_tests
     test_fixed_vector.cpp
+    test_ring_buffer.cpp
 )
 
 # Link against the core library and Catch2 main entry point
