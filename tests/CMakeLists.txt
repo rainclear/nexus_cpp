@@ -13,6 +13,7 @@ FetchContent_MakeAvailable(Catch2)
 add_executable(unit_tests
     test_fixed_vector.cpp
     test_ring_buffer.cpp
+    test_serializer.cpp
 )
 
 # Link against the core library and Catch2 main entry point
