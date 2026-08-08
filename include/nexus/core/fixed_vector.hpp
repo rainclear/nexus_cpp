@@ -77,6 +77,24 @@ public:
         }
     }
 
+    constexpr explicit fixed_vector(size_type count) {
+        if (count > N) {
+            throw std::out_of_range("fixed_vector count exceeds capacity");
+        }
+        for (size_type i = 0; i < count; ++i) {
+            emplace_back(); // 默认构造 T
+        }
+    }
+
+    constexpr fixed_vector(size_type count, const T& value) {
+        if (count > N) {
+            throw std::out_of_range("fixed_vector count exceeds capacity");
+        }
+        for (size_type i = 0; i < count; ++i) {
+            push_back(value);
+        }
+    }
+
     // Iterators Support
     [[nodiscard]] constexpr iterator begin() noexcept { return data(); }
     [[nodiscard]] constexpr const_iterator begin() const noexcept { return data(); }
