@@ -200,4 +200,23 @@ private:
     handle_type handle_{nullptr};
 };
 
+// Fire-and-forget task for top-level event loops / worker threads.
+// The coroutine frame automatically cleans itself up on completion.
+class detach_task {
+public:
+    struct promise_type {
+        detach_task get_return_object() noexcept { return {}; }
+        std::suspend_never initial_suspend() noexcept { return {}; }
+        std::suspend_never final_suspend() noexcept { return {}; }
+        void return_void() noexcept {}
+        void unhandled_exception() noexcept {
+            try {
+                std::rethrow_exception(std::current_exception());
+            } catch (const std::exception& e) {
+                // Log exception safely in production
+            }
+        }
+    };
+};
+
 } // namespace nexus::core
